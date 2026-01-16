@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Raven Tales - Gothic Story Archive</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gothic.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="raven-header">
+        <div class="container">
+            <div class="brand-logo">🐦‍⬛</div>
+            <h1>WHITE RAVEN TALES</h1>
+            <p class="tagline">Shadow wisdom for the modern mystic</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="search-input"
+                    class="search-input"
+                    placeholder="Search the shadows... (e.g., 'dark mirror psychological horror')"
+                >
+                <button id="search-btn" class="search-btn">🔍 Search</button>
+            </div>
+        </div>
+
+        <!-- Filters Panel -->
+        <div class="filters-panel" id="filters-panel">
+            <div class="filter-header">
+                <h3>🎭 Advanced Filters</h3>
+                <button id="toggle-filters" class="toggle-btn">Show/Hide</button>
+            </div>
+
+            <div class="filter-content" id="filter-content">
+                <!-- Mood Filter -->
+                <div class="filter-group">
+                    <label class="filter-label">Mood</label>
+                    <div class="mood-chips" id="mood-chips-container">
+                        <!-- Dynamically populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Quality Filter -->
+                <div class="filter-group">
+                    <label class="filter-label">Quality Score (Min: <span id="quality-value">6</span>)</label>
+                    <input
+                        type="range"
+                        id="quality-slider"
+                        class="slider"
+                        min="1"
+                        max="10"
+                        value="6"
+                    >
+                </div>
+
+                <!-- Length Filter -->
+                <div class="filter-group">
+                    <label class="filter-label">Video Length (seconds)</label>
+                    <div class="range-inputs">
+                        <input
+                            type="number"
+                            id="length-min"
+                            class="range-input"
+                            placeholder="Min"
+                            value="30"
+                        >
+                        <span>-</span>
+                        <input
+                            type="number"
+                            id="length-max"
+                            class="range-input"
+                            placeholder="Max"
+                            value="120"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Browse Shortcuts -->
+        <div class="browse-section">
+            <h3 class="section-title">📖 Browse Stories</h3>
+            <div class="browse-buttons">
+                <button id="random-btn" class="browse-btn">🎲 Random</button>
+                <button id="recent-btn" class="browse-btn">📅 Recent</button>
+                <button id="top-btn" class="browse-btn">⭐ Top Rated</button>
+            </div>
+        </div>
+
+        <!-- Results Counter -->
+        <div class="results-header">
+            <h3 id="results-count">Loading stories...</h3>
+        </div>
+
+        <!-- Story Grid -->
+        <div class="story-grid" id="story-grid">
+            <!-- Dynamically populated by JS -->
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="loading-spinner" id="loading-spinner" style="display: none;">
+            <div class="spinner"></div>
+            <p>Searching the shadows...</p>
+        </div>
+
+        <!-- Database Stats Footer -->
+        <div class="stats-footer">
+            <div class="stat-item">
+                <span class="stat-value" id="total-stories">0</span>
+                <span class="stat-label">Total Stories</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="moods-count">0</span>
+                <span class="stat-label">Moods</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="avg-quality">0.0</span>
+                <span class="stat-label">Avg Quality</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Story Modal (Full View) -->
+    <div id="story-modal" class="story-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+
+            <h2 class="modal-story-title"></h2>
+
+            <div class="modal-story-meta"></div>
+
+            <div class="modal-actions">
+                <button class="action-btn copy-btn">📋 Copy Text</button>
+                <button class="action-btn share-btn" disabled>🔗 Share (Coming Soon)</button>
+            </div>
+
+            <div class="story-full-text"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="success-toast" class="toast success-toast"></div>
+    <div id="error-toast" class="toast error-toast"></div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
